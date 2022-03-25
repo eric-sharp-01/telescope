@@ -26,6 +26,6 @@ https
     },
     app
   )
-  .listen(80, function () {
-
+  .listen(80, () => {
+    console.log(`server started at https://localhost`);
   });

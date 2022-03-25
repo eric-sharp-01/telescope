@@ -1,5 +1,7 @@
 import path from 'path';
 import express from "express";
+import fs from 'fs';
+import https from 'https';
 import tradesController from './routers/trades';
 
 const app = express();
@@ -16,3 +18,14 @@ app.use(express.static(path.join(__dirname + '/../static')));
 app.listen( port, () => {
     console.log( `server started at http://localhost:${port}` );
 });
+https
+  .createServer(
+    {
+      key: fs.readFileSync("server.key"),
+      cert: fs.readFileSync("server.cert"),
+    },
+    app
+  )
+  .listen(80, function () {
+
+  });

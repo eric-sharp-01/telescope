@@ -1,5 +1,6 @@
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let webpack = require('webpack');
 
@@ -8,16 +9,9 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, 'src'),
   resolve: {
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      containers: path.resolve(__dirname, 'src/containers/'),
-      settings: path.resolve(__dirname, 'src/settings/'),
-      lib: path.resolve(__dirname, 'src/lib/'),
-      actionCreators: path.resolve(__dirname, 'src/actionCreators/'),
-      reducers: path.resolve(__dirname, 'src/reducers/'),
-      assets: path.resolve(__dirname, 'src/assets/'),
-      Routes: path.resolve(__dirname, 'src/Routes.js')
+      containers: path.resolve(__dirname, 'src/containers/')
     }
   },
   entry: {
@@ -32,10 +26,7 @@ module.exports = {
       {
         test: /\.ts[x]?$/,
         exclude: /node_modules/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          useBabel: true,
-        },
+        loader: 'ts-loader'
       },
       {
         test: /\.[sc]{1,2}ss$/i,
@@ -65,5 +56,6 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
+    new CleanWebpackPlugin()
   ],
 };

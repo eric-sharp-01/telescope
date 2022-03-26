@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/ae632333-989f-4cdf-87a4-dbe8c3ef3617/resourceGroups/telescope/providers/Microsoft.Web/sites/acbcc",
+  "appService.deploySubpath": "."
+}
